@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#f0fdfa" />
+  <meta name="description" content="প্রশান্তির সন্ধানে — একটি সংক্ষিপ্ত মানসিক স্বাস্থ্য যাচাই। নিজের মনকে জিজ্ঞাসা করুন, সৎ থাকুন নিজের কাছে।" />
+  <title>মানসিক স্বাস্থ্য যাচাই | প্রশান্তির সন্ধানে</title>
+
+  <!-- Google Font: Noto Sans Bengali -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { bengali: ['"Noto Sans Bengali"', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- App logic (deferred so the DOM is ready when it runs) -->
+  <script src="script.js" defer></script>
+</head>
+
+<body class="font-bengali text-slate-800 antialiased">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="relative z-10 mx-auto flex min-h-screen max-w-md flex-col px-4 py-6 sm:py-9">
+
+    <!-- ===================== Brand header ===================== -->
+    <header class="mb-6 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 shadow-sm ring-1 ring-teal-100 backdrop-blur">
+        <i class="fa-solid fa-spa text-teal-500"></i>
+        <span class="text-sm font-semibold tracking-wide text-teal-700">প্রশান্তির সন্ধানে</span>
+      </div>
+    </header>
+
+    <main class="flex-1">
+
+      <!-- ============ Screen 1: Welcome & User Data Collection ============ -->
+      <section id="welcome-screen" class="screen">
+        <div class="rounded-3xl bg-white p-6 shadow-md ring-1 ring-slate-100 sm:p-8">
+          <div class="text-center">
+            <div class="breathe mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-teal-50 to-sky-100 ring-1 ring-teal-100">
+              <i class="fa-solid fa-hand-holding-heart text-2xl text-teal-500"></i>
+            </div>
+            <h1 class="text-xl font-extrabold leading-snug text-slate-800 sm:text-2xl">
+              জেনে নিন.., মানসিক ভাবে আপনি কতটুকু অসুস্থ্..?
+            </h1>
+          </div>
+
+          <!-- Paper & pen callout -->
+          <div class="mt-5 flex items-start gap-3 rounded-2xl bg-teal-50 p-3.5 ring-1 ring-teal-100">
+            <i class="fa-solid fa-pen-to-square mt-0.5 text-teal-500"></i>
+            <p class="text-sm font-medium leading-relaxed text-teal-800">
+              একটা কাগজ ও কলম নিন, নিজের টেষ্ট নিজেই করুন। নিচের ১২টি প্রশ্নের উত্তর দিন — শুধু সৎ থাকুন নিজের কাছে।
+            </p>
+          </div>
+
+          <!-- Data collection form -->
+          <form id="user-form" class="mt-6 space-y-4" novalidate>
+            <p class="text-sm font-semibold text-slate-500">শুরু করতে আপনার তথ্যগুলো দিন</p>
+
+            <!-- Name -->
+            <div class="field">
+              <label class="field-label" for="name">আপনার নাম <span class="text-red-400">*</span></label>
+              <div class="input-wrap" id="name-wrap">
+                <i class="fa-solid fa-user"></i>
+                <input class="field-input" id="name" name="name" type="text" autocomplete="name" placeholder="আপনার পূর্ণ নাম লিখুন" />
+              </div>
+              <p class="field-error" id="name-error"><i class="fa-solid fa-circle-exclamation"></i><span></span></p>
+            </div>
+
+            <!-- WhatsApp number -->
+            <div class="field">
+              <label class="field-label" for="whatsapp">WhatsApp নম্বর <span class="text-red-400">*</span></label>
+              <div class="input-wrap" id="whatsapp-wrap">
+                <i class="fa-brands fa-whatsapp"></i>
+                <input class="field-input" id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="যেমন: 01XXXXXXXXX" />
+              </div>
+              <p class="field-error" id="whatsapp-error"><i class="fa-solid fa-circle-exclamation"></i><span></span></p>
+            </div>
+
+            <!-- Date of birth -->
+            <div class="field">
+              <label class="field-label" for="dob">জন্ম তারিখ <span class="text-red-400">*</span></label>
+              <div class="input-wrap" id="dob-wrap">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input class="field-input" id="dob" name="dob" type="date" />
+              </div>
+              <p class="field-error" id="dob-error"><i class="fa-solid fa-circle-exclamation"></i><span></span></p>
+            </div>
+
+            <button type="submit" id="next-btn"
+              class="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-teal-500 to-teal-600 py-4 text-lg font-bold text-white shadow-lg shadow-teal-500/30 transition hover:brightness-105 active:scale-[.98]">
+              পরবর্তী ধাপে যান
+              <i class="fa-solid fa-arrow-left-long"></i>
+            </button>
+
+            <p class="flex items-center justify-center gap-1.5 text-xs text-slate-400">
+              <i class="fa-solid fa-lock"></i> আপনার তথ্য সম্পূর্ণ গোপনীয় থাকবে।
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ===================== Screen 2: Quiz ===================== -->
+      <section id="quiz-screen" class="screen hidden">
+        <div class="rounded-3xl bg-white p-6 shadow-md ring-1 ring-slate-100 sm:p-7">
+
+          <!-- Progress -->
+          <div class="mb-6">
+            <div class="mb-2 flex items-center justify-between">
+              <button type="button" id="back-btn"
+                class="invisible inline-flex items-center gap-1 text-sm font-medium text-slate-400 transition hover:text-teal-600">
+                <i class="fa-solid fa-arrow-right-long text-xs"></i> পূর্ববর্তী
+              </button>
+              <span id="q-number" class="text-sm font-semibold text-teal-600">প্রশ্ন ১ / ১২</span>
+            </div>
+            <div class="h-2.5 w-full overflow-hidden rounded-full bg-slate-100"
+                 role="progressbar" id="q-progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="1">
+              <div id="q-progress-fill" class="h-full rounded-full bg-gradient-to-r from-teal-400 to-teal-500 transition-all duration-500 ease-out" style="width: 8.33%"></div>
+            </div>
+          </div>
+
+          <!-- Question body (animated) -->
+          <div id="q-body">
+            <h2 id="q-text" class="mb-6 text-lg font-bold leading-relaxed text-slate-800 sm:text-xl"></h2>
+            <div id="q-options" class="flex flex-col gap-3"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================== Screen 3: Result & CTA ===================== -->
+      <section id="result-screen" class="screen hidden">
+
+        <!-- Personalized greeting -->
+        <div id="result-greeting" class="mb-4 text-center"></div>
+
+        <!-- Result card -->
+        <div id="result-card" class="overflow-hidden rounded-3xl border-2 bg-white shadow-lg" style="border-color:#a7f3d0;">
+          <div id="result-accent" class="h-2 w-full" style="background:#10b981;"></div>
+          <div class="p-6 text-center sm:p-8">
+            <div id="result-icon-badge" class="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full" style="background:#ecfdf5;">
+              <i id="result-icon" class="fa-solid fa-leaf text-3xl" style="color:#10b981;"></i>
+            </div>
+
+            <div id="result-score" class="mb-3 inline-block rounded-full px-4 py-1 text-sm font-bold" style="background:#ecfdf5; color:#10b981;">
+              আপনার স্কোর: <span id="score-num">0</span> / ২৪
+            </div>
+
+            <h2 id="result-title" class="mb-3 text-xl font-extrabold leading-snug sm:text-2xl" style="color:#10b981;"></h2>
+            <p id="result-body" class="text-[0.95rem] leading-relaxed text-slate-600"></p>
+          </div>
+        </div>
+
+        <!-- বিশেষ দ্রষ্টব্য: স্নায়ুতন্ত্র দোল খাচ্ছে (স্কোর ১২/১৩ + সমান খ-গ হলে দেখাবে) -->
+        <div id="oscillation-note" class="mt-4 hidden items-start gap-3 rounded-2xl border border-indigo-100 bg-indigo-50 p-4">
+          <i class="fa-solid fa-thumbtack mt-1 text-indigo-500"></i>
+          <p class="text-sm leading-relaxed text-indigo-800">
+            <span class="font-bold">বিশেষ দ্রষ্টব্য:</span> আপনার স্নায়ুতন্ত্র 'সিমপ্যাথেটিক' (যুদ্ধ) এবং 'ডরসাল' (শাটডাউন) এর মধ্যে দোল খাচ্ছে (Oscillating)। ট্রমা সারভাইভারদের মধ্যে এটি খুব সাধারণ। এক্ষেত্রে প্রথমে শরীরকে নিরাপদ বোধ করানো (Somatic Grounding) সবচেয়ে জরুরি পদক্ষেপ।
+          </p>
+        </div>
+
+        <!-- CTA section -->
+        <div class="mt-5 rounded-3xl bg-gradient-to-br from-teal-50 to-sky-50 p-6 shadow-md ring-1 ring-teal-100">
+          <div class="text-center">
+            <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-teal-100">
+              <i class="fa-solid fa-user-doctor text-2xl text-teal-500"></i>
+            </div>
+            <h3 class="text-lg font-extrabold leading-snug text-slate-800">
+              সম্পূর্ণ ফ্রিতে ডাক্তারের সাথে ১০ মিনিট পরামর্শ করুন
+            </h3>
+            <p class="mt-1.5 text-sm text-slate-500">
+              আপনার অনুভূতিগুলো একজন অভিজ্ঞ চিকিৎসকের সাথে শেয়ার করুন — আজই।
+            </p>
+          </div>
+
+          <div class="mt-5 flex flex-col gap-3">
+            <a id="wa-btn" href="https://wa.me/8801234567890" target="_blank" rel="noopener" class="cta-btn cta-wa wa-pulse">
+              <i class="fa-brands fa-whatsapp text-2xl"></i>
+              WhatsApp এ মেসেজ দিন
+            </a>
+          </div>
+        </div>
+
+        <!-- Retake + disclaimer -->
+        <div class="mt-5 text-center">
+          <button type="button" id="retake-btn" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-500 transition hover:bg-white hover:text-teal-600">
+            <i class="fa-solid fa-rotate-right"></i> আবার টেস্ট দিন
+          </button>
+          <p class="mx-auto mt-4 max-w-xs text-xs leading-relaxed text-slate-400">
+            এই টেস্টটি একটি প্রাথমিক ধারণা মাত্র, চূড়ান্ত চিকিৎসা নির্ণয় নয়। প্রয়োজনে অভিজ্ঞ চিকিৎসকের পরামর্শ নিন।
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="mt-8 text-center">
+      <p class="text-xs text-slate-400">© <span id="year"></span> প্রশান্তির সন্ধানে — মানসিক সুস্থতার পথে</p>
+    </footer>
+  </div>
+
+  <noscript>
+    <div style="padding:1rem; text-align:center; color:#334155;">এই টেস্টটি ব্যবহার করতে অনুগ্রহ করে আপনার ব্রাউজারে JavaScript চালু করুন।</div>
+  </noscript>
+</body>
+</html>
